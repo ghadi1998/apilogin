@@ -1,8 +1,8 @@
 var jwt = require('jsonwebtoken');
 var atob = require('atob');
 var Cryptr = require('cryptr'),
-cryptr = new Cryptr('myTotalySecretKey');
-
+cryptr = new Cryptr('1q2w3e4r5t6y7u8i9o0pp0o9i8u7y6t5r4e3w2q1');
+var db = require('../server')
 
 exports.signup=function(req , res){
     
@@ -11,7 +11,7 @@ exports.signup=function(req , res){
     var username = req.body.username;
     var pass= req.body.password;
     var email=req.body.email;
-    var dec_pass =atob(toString(req.body.password));
+    var dec_pass =atob(toString(pass));
     var encrypted_pass = cryptr.encrypt(dec_pass);
 
     var sql = "INSERT INTO `user`(`user_id`,`first_name`,`last_name`,`user_name` , `email`,`password`) VALUES ('','" + fname + "','" + lname + "','" + username + "','" +email+ "','" +encrypted_pass+ "')";
@@ -28,6 +28,7 @@ exports.signup=function(req , res){
 exports.login=function(req , res){
 var name=req.body.username;
 var pass= req.body.password;
+var { name, pass} = req.body
 var dec_pass =atob(toString(pass));
 var encrypted_pass = cryptr.encrypt(dec_pass);
 

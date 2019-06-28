@@ -1,6 +1,6 @@
 var  Sequelize = require('sequelize')
 var app = require('./app')
-var config = require('../config/config')
+var CONFIG= require('../config/CONFIG')
 const db = {}
 
 
@@ -20,7 +20,7 @@ const sequelize = new Sequelize ("users" , "root" , "" ,{
 })
 
 console.log('alright')
-
+console.log(CONFIG)
 
 db.sequelize=sequelize
 db.Sequelize=Sequelize

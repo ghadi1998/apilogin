@@ -2,12 +2,13 @@ import React, { Component } from "react";
 
 
 
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      Password: "",
+      username:"",
+      password:"",
       passwordError: "",
       usernameError: "",
       DisabledButton:true
@@ -16,24 +17,20 @@ class Login extends Component {
   }
 
 
-
+  
   componentDidMount() {
-    fetch('/api/login',{
-      method: 'POST',
-       credentials: 'include',
+   fetch('/api/login' , {
+    method: 'POST',
+   credentials: 'include',
        headers : {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         },
-          body: JSON.stringify(),
+        'Content-Type': 'application/json',
+       'Accept': 'application/json'
+       },
+       body : JSON.stringify({username: this.state.username , password : this.state.password})
     })
-   .then((response) => response.json())
-   .then((responseJson) =>{
-     this.setState({
-       message: responseJson.data
-     });
-   })
- }
+  }  
+ 
+  
 
   //handlechange
   handleChange = e => {
@@ -70,21 +67,13 @@ class Login extends Component {
 
 
 
-  onSubmit = async e => {
+  onSubmit(e)  {
     e.preventDefault();
-
-    
-  }
    
-
+    
+  }          
+    
   
-  
-  
-
-  
-
-
-
   render() {
 
 
